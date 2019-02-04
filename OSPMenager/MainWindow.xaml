@@ -1,0 +1,378 @@
+﻿<Window x:Name="main" x:Class="OSPMenager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OSPMenager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1080" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Initialized="Window_Initialized">
+    <Window.Resources>
+
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="43.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-43.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle">
+                <EasingDoubleKeyFrame KeyTime="0" Value="43.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-43.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Style x:Key="CalendarDayButtonStyle" TargetType="{x:Type CalendarDayButton}">
+            <Setter Property="TextElement.FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Date}" >
+                    <Setter Property="Background" Value="Turquoise"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Comic Sans MS" />
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush/>
+    </Window.Background>
+
+
+    <Grid Background="#FF515151">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="GridMenu" Grid.Column="0" HorizontalAlignment="Left" Width="70" Background="#FF116FA4">
+            <StackPanel>
+                <Grid Height="150" Background="{Binding Fill, ElementName=ellipse}" >
+                    <TextBlock Text="OSP Menadżer" Visibility="Hidden" x:Name="tbWelcomeTitle" FontWeight="Bold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Button x:Name="ButtonMenu" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="70" Height="70" Click="ButtonMenu_Click">
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Rectangle x:Name="rectangle" Width="30" Height="5" Margin="0 0 0 0" Fill="#FF515151" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="-0,0.5">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="rectangle1" Width="30" Height="5" Margin="0 20 0 0 " Fill="#FF515151" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="-0,0.5">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle x:Name="rectangle2" Width="30" Height="5" Margin="0 10 0 0" Fill="#FF515151" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+
+                <Button x:Name="ButtonMenu2" Content="Urodziny" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Width="200" Visibility="Hidden" Height="150" Click="ButtonMenu2_Click" FontWeight="Bold" Foreground="White" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="bin/Debug/poziomy.jpg"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="ButtonMenu3" Content="Wniosek o ekwiwalent" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Width="200" Visibility="Hidden" Height="150" Click="ButtonMenu3_Click" FontWeight="Bold" Foreground="#FF00742A" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="bin/Debug/wniosek_ekwiwalent.JPG" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+            <Grid Height="75" VerticalAlignment="Bottom" Background="White">
+                <Button x:Name="btQuit" Click="btQuit_Click">
+                    <Grid>
+                        <StackPanel>
+                            <Grid Margin="0,0,0,0">
+                                <Ellipse Fill="#FF515151" HorizontalAlignment="Center" Height="40" VerticalAlignment="Center" Width="40"/>
+                                <Ellipse x:Name="ellipse" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" Width="30" Fill="{Binding Background, ElementName=btQuit}"/>
+                                <Rectangle x:Name="rectangle3" Fill="#FF515151" Height="27" VerticalAlignment="Bottom" Margin="22,0,22,23" Width="6" />
+                            </Grid>
+                            <TextBlock Text="Wyjście" Foreground="#FF515151" Height="17"  VerticalAlignment="Bottom" HorizontalAlignment="Center"  />
+                        </StackPanel>
+                    </Grid>
+
+                </Button>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="gStartGrid" Grid.Column="1" Visibility="Visible">
+            <WrapPanel>
+
+                <Button x:Name="ButtonStartMenu2" Content="Urodziny" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Width="200" Visibility="Visible" Height="150" Click="ButtonMenu2_Click" FontWeight="Bold" Foreground="White" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="bin/Debug/poziomy.jpg"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="ButtonStartMenu3" Content="Wniosek o ekwiwalent" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Width="200" Visibility="Visible" Height="150" Click="ButtonMenu3_Click" FontWeight="Bold" Foreground="#FF00742A" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="bin/Debug/wniosek_ekwiwalent.JPG" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="ButtonStartMenu4" VerticalAlignment="Bottom" HorizontalAlignment="Right"  BorderBrush="{x:Null}" Width="200" Visibility="Visible" Height="150" FontWeight="Bold" Foreground="White" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="bin/Debug/infoico.png"/>
+                    </Button.Background>
+                    <TextBlock Text="Informacje" VerticalAlignment="Bottom" TextWrapping="Wrap" TextAlignment="Center" Height="26" FontSize="18" Margin="0,110,0,0" Foreground="Black"/>
+
+                </Button>
+            </WrapPanel>
+        </Grid>
+
+        <Grid x:Name="OSPUrodziny" Grid.Column="1" Visibility="Hidden">
+            <Grid.Background>
+                <ImageBrush ImageSource="bin/Debug/poziomy.jpg"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Opacity="0.75" >
+                <StackPanel>
+                    <TextBox Name="tbClock" Width ="111" Text="12:00" TextAlignment="Center" FontSize="36" FontFamily="Comic Sans MS" Margin="135,10,124,10" Background="White" Opacity="0.8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBox x:Name="tbGreeting" Text="It's great weather today!" Background="White" Opacity="0.9" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="tbSoonBd" Text="najbliższe" Background="White" Opacity="0.9" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="1,0,-16,0" Width="385"/>
+                    <!--KALENDARZE-->
+                    <Grid HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Calendar x:Name="calendar" CalendarDayButtonStyle="{StaticResource CalendarDayButtonStyle}" Grid.Column="0" DisplayDateChanged="calendar_DisplayDateChanged" BorderBrush="{x:Null}" Foreground="{x:Null}" Background="White" Opacity="0.9" />
+                        <Calendar x:Name="calendar1" CalendarDayButtonStyle="{StaticResource CalendarDayButtonStyle}" Grid.Column="1" IsTodayHighlighted="False" IsHitTestVisible="False" Loaded="calendar1_Loaded" Background="White" BorderBrush="{x:Null}" Foreground="{x:Null}" Opacity="0.9"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.Column="0" Fill="Red"/>
+                        <TextBox Grid.Column="1" Text="Druh Zwykły1" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                        <Rectangle Grid.Column="2" Fill="LawnGreen"/>
+                        <TextBox Grid.Column="3" Text="Druh Zwykły2" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                        <Rectangle Grid.Column="4" Fill="Gold"/>
+                        <TextBox Grid.Column="5" Text="Druh Młody" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                        <Rectangle Grid.Column="6" Fill="HotPink"/>
+                        <TextBox Grid.Column="7" Text="Członek zarządu" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                        <Rectangle Grid.Column="8" Fill="LightSkyBlue"/>
+                        <TextBox Grid.Column="9" Text="Członek honorowy" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                    </Grid>
+
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="0" Opacity="0.7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="190*"/>
+                    <ColumnDefinition Width="151*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.ColumnSpan="2">
+                    <TextBox Text="Nadchodzące urodziny:" HorizontalAlignment="Center" />
+                    <ListView x:Name="lvCommingSoon"   MouseDoubleClick="lvCommingSoon_MouseDoubleClick" HorizontalAlignment="Center" SelectionChanged="lvCommingSoon_SelectionChanged" MaxHeight="550" />
+                    <Grid VerticalAlignment="Bottom">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btAdd" Grid.Column="0" Content="Dodaj druha" Click="btAdd_Click" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Button x:Name="btRemove" Grid.Column="4" Content="Usuń druha" Height="21" VerticalAlignment="Center" Click="btRemove_Click" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1" x:Name="gAddMember" Visibility="Hidden" Opacity="1" Background="{x:Null}" >
+                <StackPanel Margin="10, 10, 10, 10">
+                    <TextBlock  Text="Dodawanie nowego druha:" FontFamily="Comic Sans MS" Margin="10, 0, 10, 10" TextAlignment="Center" FontWeight="ExtraBlack" Foreground="Red"/>
+                    <StackPanel x:Name="spPicker" Opacity="0.8">
+
+                        <TextBlock Text="Imię:" FontFamily="Comic Sans MS" Foreground="Red" />
+                        <TextBox AcceptsReturn="False" MaxHeight="130" FontFamily="Comic Sans MS" AcceptsTab="False" TextWrapping="Wrap" Padding="5" MinLines="2" x:Name="tbImieNowego"/>
+                        <TextBlock Text="Nazwisko:" FontFamily="Comic Sans MS" Foreground="Red" />
+                        <TextBox AcceptsReturn="False" MaxHeight="130" FontFamily="Comic Sans MS" AcceptsTab="False" TextWrapping="Wrap" Padding="5" MinLines="2" x:Name="tbNazwiskoNowego"/>
+                        <TextBlock Text="Data urodzenia:"  FontFamily="Comic Sans MS" Foreground="Red"  />
+                        <DatePicker Padding="5" Text="Wybierz datę" FontFamily="Comic Sans MS"  x:Name="dpDataNowego" Margin="0,0,0,10" Background="White" Foreground="Red"/>
+                        <TextBlock Text="Status druha:" FontFamily="Comic Sans MS" Foreground="Red"  />
+                        <ComboBox Margin="0,0,0,10" Padding="5" FontFamily="Comic Sans MS" SelectedIndex="4" x:Name="cbStatusNowego" Foreground="Red" >
+                            <ComboBoxItem Content="Zwykły 1"/>
+                            <ComboBoxItem Content="Zwykły 2"/>
+                            <ComboBoxItem Content="Młody"/>
+                            <ComboBoxItem Content="Członek zarządu"/>
+                            <ComboBoxItem Content="Członek honorowy"/>
+                        </ComboBox>
+
+                        <Grid Margin="0,30,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btAcceptNewEvent" Content="Zatwierdź" Margin="10,0,10,0" FontFamily="Comic Sans MS" Click="btAcceptNewEvent_Click" Foreground="Red" />
+                            <Button x:Name="btCancelNewEvent" Content="Anuluj" Grid.Column="1" Margin="10,0,10,0" FontFamily="Comic Sans MS" Click="btCancelNewEvent_Click" Foreground="Red" />
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="OSPEquivalent" Grid.Column="1" Visibility="Hidden" Background="#FF6F18AC" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="gButtons" Grid.Column="1" Width="200" Background="White" HorizontalAlignment="Right">
+                <StackPanel>
+                    <Button Name="btnEquivalentMenu1" Width="200" Height="100" Background="WhiteSmoke" Foreground="#FF6F18AC" FontWeight="Bold" FontSize="24" Click="btnEquivalentMenu1_Click">
+                        <TextBlock Text="Informacje Ogólne" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button>
+                    <Button Name="btnEquivalentMenu2" Width="200" Height="100" Background="WhiteSmoke" Foreground="#FF6F18AC" FontWeight="Bold" FontSize="24" Click="btnEquivalentMenu2_Click">
+                        <TextBlock Text="Dodaj zastęp" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button>
+                    <Button Name="btnEquivalentMenu5" Width="200" Height="100" Background="WhiteSmoke" Foreground="#FF6F18AC" FontWeight="Bold" FontSize="24" Click="btnEquivalentMenu5_Click">
+                        <TextBlock Text="Wyklucz zastęp" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button>
+                    <Button Name="btnEquivalentMenu3" Width="200" Height="100" Background="WhiteSmoke" Foreground="#FF6F18AC" FontWeight="Bold" FontSize="24">
+                        <TextBlock Text="Generuj          i drukuj" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button>
+                    <Button Name="btnEquivalentMenu4" Width="200" Height="100" Background="WhiteSmoke" Foreground="#FF6F18AC" FontWeight="Bold" FontSize="24">
+                        <TextBlock Text="Wyczyść" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="0" Visibility="Hidden" VerticalAlignment="Center" x:Name="gMainInfo" HorizontalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="Data zdarzenia: " Margin="20,20,20,0" Foreground="White" HorizontalAlignment="Left" FontSize="24" />
+                    <DatePicker x:Name="dpEquivalentOccurrence" Margin="20,0,20,20" Background="{x:Null}" Width="300" FontSize="24" Text="Wybierz datę" BorderBrush="{x:Null}" Foreground="#FF6F18AC" HorizontalAlignment="Left"/>
+                    <TextBlock Text="Numer ewidencyjny: " Margin="20,20,20,0" Foreground="White" HorizontalAlignment="Left" FontSize="24" />
+                    <TextBox  Foreground="White" BorderThickness="4" Margin="20,0,20,20" Width="300" HorizontalAlignment="Left" FontSize="24" Background="#FF6F18AC" />
+                    <TextBlock Text="Nazwa zdarzenia: " Margin="20,20,20,0" Foreground="White" HorizontalAlignment="Left" FontSize="24" />
+                    <TextBox  MaxLines="6" Foreground="White" MinLines="3" Margin="20,0,20,20" TextWrapping="Wrap" AcceptsReturn="True" BorderThickness="4" Width="600" HorizontalAlignment="Left" FontSize="24" Background="#FF6F18AC" />
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="gAddUnits" Grid.Column="0" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <ListBox x:Name="spUnits"  MaxHeight="500" SelectionChanged="spUnits_SelectionChanged" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="20,0,0,0">
+                    <TextBlock Text="Czas odjazdu: " Margin="20,20,20,0" Foreground="White" HorizontalAlignment="Left" FontSize="18" />
+                    <DatePicker x:Name="dpStartTime" Margin="0,10,0,0" Background="{x:Null}" Width="300" FontSize="18" BorderBrush="{x:Null}" Foreground="#FF6F18AC" HorizontalAlignment="Left"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Godzina: " Margin="0, 10, 0, 10" Grid.Column="0"  Foreground="White" HorizontalAlignment="Right" FontSize="18" />
+                        <TextBox x:Name="tbStartHour" Foreground="White" Margin="0, 10, 0, 10" Grid.Column="1" Width="100" BorderThickness="4"   HorizontalAlignment="Left" FontSize="18" Background="#FF6F18AC" />
+                        <TextBlock Text="Minuta: " Grid.Column="2" Margin="0, 10, 0, 10"  Foreground="White" HorizontalAlignment="Right" FontSize="18" />
+                        <TextBox x:Name="tbStartMinute" Foreground="White" Width="100" Margin="0, 10, 0, 10" Grid.Column="3" BorderThickness="4"  HorizontalAlignment="Left" FontSize="18" Background="#FF6F18AC" />
+                    </Grid>
+                    <TextBlock Text="Czas powrotu: " Margin="20,20,20,0" Foreground="White" HorizontalAlignment="Left" FontSize="18" />
+                    <DatePicker x:Name="dpEndTime" Margin="0,10,0,0" Background="{x:Null}" Width="300" FontSize="18" BorderBrush="{x:Null}" Foreground="#FF6F18AC" HorizontalAlignment="Left"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Godzina: " Margin="0, 10, 0, 10" Grid.Column="0"  Foreground="White" HorizontalAlignment="Right" FontSize="18" />
+                        <TextBox x:Name="tbEndHour" Foreground="White" Margin="0, 10, 0, 10" Grid.Column="1" Width="100" BorderThickness="4"   HorizontalAlignment="Left" FontSize="18" Background="#FF6F18AC" />
+                        <TextBlock Text="Minuta: " Grid.Column="2" Margin="0, 10, 0, 10"  Foreground="White" HorizontalAlignment="Right" FontSize="18" />
+                        <TextBox x:Name="tbEndMinute" Foreground="White" Width="100" Margin="0, 10, 0, 10" Grid.Column="3" BorderThickness="4"  HorizontalAlignment="Left" FontSize="18" Background="#FF6F18AC" />
+                    </Grid>
+                    <Button  x:Name="btApproveUnit" Background="White" VerticalAlignment="Center" Width="200" Height="50" FontSize="18" Content="Zatwierdź zastęp" Click="btApproveUnit_Click" Grid.Column="1" />
+
+                </StackPanel>
+
+            </Grid>
+
+            <Grid x:Name="gAddedUnits" Visibility="Hidden" Width="400" HorizontalAlignment="Right">
+                <StackPanel>
+                    <TextBlock Text="Wybrane zastępy: " Margin="20,20,20,0" Foreground="White" HorizontalAlignment="Left" FontSize="24" />
+                    <DataGrid x:Name="dgRescuers" Margin="0, 0, 20, 0" IsReadOnly="true" AutoGenerateColumns="False">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="3*" Binding="{Binding Rescuer}" Header="Imie i Nazwisko"/>
+                            <DataGridTextColumn Width="1*" Binding="{Binding StartTime, StringFormat='HH:mm'}" Header="Od"/>
+                            <DataGridTextColumn Width="1*" Binding="{Binding EndTime, StringFormat='HH:mm'}" Header="Do"/>
+                            <DataGridTextColumn Width="2*" Binding="{Binding TotalTime, StringFormat= h\\g\\o\\d\\z\\.\\ mm\\m\\i\\n}" Header="Czas udziału w działaniu ratowniczym lub szkoleniu"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="gRemoveUnits" Grid.Column="0" Visibility="Hidden" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <ListBox x:Name="spUnitstoRemove"  MaxHeight="500" SelectionChanged="spUnitstoRemove_SelectionChanged" />
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Grid>
+
+</Window>
