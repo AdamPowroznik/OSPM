@@ -21,38 +21,16 @@ namespace OSPMenager
     {
         List<Druh> druhowie = (List<Druh>)ReadWriteXml.readdata("", "");
         List<Unit> units = new List<Unit>();
-      
-        EquivalentApplication application = new EquivalentApplication()
-        { Units = new List<Unit>()
-        {
-            //new Unit()
-            //    {
-            //        //Rescuer = (List<Druh>)ReadWriteXml.readdata("", ""),
-            //        StartTime = new DateTime(2019, 02, 04,12,30,00),
-            //        EndTime = new DateTime(2019, 02, 04,14,00,00),
-            //    }
-            },
-            OccurrenceDateFromDay = DateTime.Today,
-            RecordNumber = 998,
-            Name = "Pożar trawy, ul. Bochotnica 10",
-        };
+        EquivalentApplication application = new EquivalentApplication();
 
-        public Wniosek1()
+        public Wniosek1(EquivalentApplication Application)
         {
-            int counter =0;
-            foreach (var druh in druhowie)
-            {
-                if (counter < 10)
-                {
-                   // units.Add(new Unit() { Rescuer = druh, StartTime = new DateTime(2019, 02, 04, 12, 30, 00), EndTime = new DateTime(2019, 02, 04, 14, 00, 00), ID=counter+1});
-                    counter++;
-                }
-            }
-            application.Units = units;
+            
             InitializeComponent();
+            application = Application;
             spContext.DataContext = application;
             dgRescuers.ItemsSource = application.Units;
-           
+
         }
 
         private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)

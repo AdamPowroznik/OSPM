@@ -22,13 +22,13 @@
 
     </Window.Resources>
     
-    <Grid>
-        <StackPanel Margin="20" x:Name="spContext">
+    <Grid x:Name="gApplication">
+        <StackPanel Margin="30" x:Name="spContext">
             <TextBlock x:Name="tbDateAndPlace" HorizontalAlignment="Right" Text="{Binding DateAndPlace}" FontWeight="Bold"/>
-            <TextBlock Text="WNIOSEK" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="24"/>
-            <TextBlock Text="o wypłatę ekwiwalentu za udział w działaniu ratowniczym lub szkoleniu pożarniczym organizowanym przez Państwową Straż Pożarną lub Gminę" TextWrapping="Wrap"/>
-            <TextBlock Margin="20, 0, 0 , 0" Text="1.	Ochotnicza Straż Pożarna w Nałęczowie na podstawie art. 28 ust. 1-3,5 ustawy z dnia 24 sierpnia 1991r. o ochronie przeciwpożarowej (tekst jednolity Dz. U. z 2002r. Nr 147 poz. 1229 ze zm.) przedstawia listę członków. Którzy wzięli udział w:" TextWrapping="Wrap"/>
-            <TextBlock TextWrapping="Wrap" Margin="50, 0, 0 , 0">
+            <TextBlock Text="WNIOSEK" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20"/>
+            <TextBlock Text="o wypłatę ekwiwalentu za udział w działaniu ratowniczym lub szkoleniu pożarniczym organizowanym przez Państwową Straż Pożarną lub Gminę" TextWrapping="Wrap" FontWeight="Bold" FontSize="14"/>
+            <TextBlock Margin="20, 0, 20 , 0" Text="1.	Ochotnicza Straż Pożarna w Nałęczowie na podstawie art. 28 ust. 1-3,5 ustawy z dnia 24 sierpnia 1991r. o ochronie przeciwpożarowej (tekst jednolity Dz. U. z 2002r. Nr 147 poz. 1229 ze zm.) przedstawia listę członków. Którzy wzięli udział w:" TextWrapping="Wrap" FontSize="14"/>
+            <TextBlock TextWrapping="Wrap" Margin="50, 0, 0 , 0" FontSize="14">
                 <Run Text="a)	Działaniu ratowniczym w dniu "/>
                 <Run FontWeight="Bold" Text="{Binding OccurenceDate}"/>
                 <Run Text=" o numerze ewidencyjnym zdarzenia "/>
@@ -36,9 +36,9 @@
                 <Run Text="Nazwa zdarzenia: "/>
                 <Run FontWeight="Bold" Text="{Binding Name}"/>
             </TextBlock>
-            <TextBlock TextWrapping="Wrap" Margin="50, 0, 0 , 0" Text="b)	Szkoleniu pożarniczym organizowanym przez PSP/Gminę według załączonego zaświadczenia."/>
-            <TextBlock Margin="20, 0, 0 , 0" TextWrapping="Wrap" Text="2.	N/w członkowie OSP biorący udział w działaniu ratowniczym/szkoleniu zwracają się z prośbą o wypłatę ekwiwalentu zgodnie z art. 28 ust. 1-5 ustawy z dnia 24 sierpnia 1992r. o ochronie przeciwpożarowej"/>
-            <DataGrid x:Name="dgRescuers" IsReadOnly="true" AutoGeneratingColumn="OnAutoGeneratingColumn" AutoGenerateColumns="False">
+            <TextBlock TextWrapping="Wrap" Margin="50, 0, 0 , 0" Text="b)	Szkoleniu pożarniczym organizowanym przez PSP/Gminę według załączonego zaświadczenia." FontSize="14"/>
+            <TextBlock Margin="20, 20, 0 , 0" TextWrapping="Wrap" Text="2.	N/w członkowie OSP biorący udział w działaniu ratowniczym/szkoleniu zwracają się z prośbą o wypłatę ekwiwalentu zgodnie z art. 28 ust. 1-5 ustawy z dnia 24 sierpnia 1992r. o ochronie przeciwpożarowej" FontSize="14"/>
+            <DataGrid x:Name="dgRescuers" SelectedIndex="-1" IsReadOnly="true" AutoGeneratingColumn="OnAutoGeneratingColumn" AutoGenerateColumns="False" IsHitTestVisible="False" Focusable="False" FontSize="14">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="ContentTemplate">
@@ -65,10 +65,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="RAZEM GODZIN: " HorizontalAlignment="Right" Grid.Column="0" FontWeight="Bold"/>
-                <TextBlock HorizontalAlignment="Left" Grid.Column="1" Text="{Binding TotalTime, StringFormat= h\\g\\o\\d\\z\\.\\ mm\\m\\i\\n}" FontWeight="Bold" />
+                <TextBlock Text="RAZEM GODZIN: " HorizontalAlignment="Right" Grid.Column="0" FontWeight="Bold" FontSize="14"/>
+                <TextBlock HorizontalAlignment="Left" Grid.Column="1" Text="{Binding TotalTime, StringFormat= h\\g\\o\\d\\z\\.\\ mm\\m\\i\\n}" FontWeight="Bold" FontSize="14" />
             </Grid>
-            <TextBlock TextWrapping="Wrap" Text="Zarząd Ochotniczej Straży Pożarnej w Nałęczowie zaświadcza prawdziwość danych zawartych w punktach 1 i 2 niniejszego wniosku" FontWeight="Bold"/>
+            <TextBlock Margin="0, 30, 0, 0" TextWrapping="Wrap" Text="Zarząd Ochotniczej Straży Pożarnej w Nałęczowie zaświadcza prawdziwość danych zawartych w punktach 1 i 2 niniejszego wniosku" FontWeight="Bold" FontSize="14"/>
             <TextBlock Text="................................." Margin="0,50,0,0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
         </StackPanel>
     </Grid>

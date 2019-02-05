@@ -328,14 +328,14 @@ namespace OSPMenager
         {
             ButtonMenu_Click(this, null);
             gStartGrid.Visibility = Visibility.Hidden;
-            Wniosek1 wniosek = new Wniosek1();
-            wniosek.Show();
+            
         }
 
         private void btnEquivalentMenu2_Click(object sender, RoutedEventArgs e)
         {
             gMainInfo.Visibility = Visibility.Hidden;
             gAddedUnits.Visibility = Visibility.Hidden;
+            gRemoveUnits.Visibility = Visibility.Hidden;
             if(dpEquivalentOccurrence.SelectedDate != null)
             {
                 dpEndTime.SelectedDate = (DateTime)dpEquivalentOccurrence.SelectedDate;
@@ -367,26 +367,79 @@ namespace OSPMenager
         List<Unit> units = new List<Unit>();
         private void btApproveUnit_Click(object sender, RoutedEventArgs e)
         {
-            foreach (CheckBox item in spUnits.Items)
+            // int t = 0;
+            // if (dpStartTime.SelectedDate != null)
+            //     if(dpEndTime.SelectedDate != null)
+            //         if(Int32.TryParse(tbStartHour.Text, out t))
+            //             if(Int32.TryParse(tbStartMinute.Text, out t))
+            //                 if(Int32.TryParse(tbEndHour.Text, out t))
+            //                     if(Int32.TryParse(tbEndMinute.Text, out t))
+            //                         if(Int32.Parse(tbStartHour.Text) < 24)
+            //                             if(Int32.Parse(tbStartHour.Text) >= 0)
+            //                                 if(Int32.Parse(tbStartMinute.Text) <60)
+            //                                     if(Int32.Parse(tbStartMinute.Text) >= 0)
+            //                                         if (Int32.Parse(tbEndHour.Text) < 24)
+            //                                             if (Int32.Parse(tbEndHour.Text) >= 0)
+            //                                                 if (Int32.Parse(tbEndMinute.Text) < 60)
+            //                                                     if (Int32.Parse(tbEndMinute.Text) >= 0)
+            //                                                     {
+            //                                                         foreach (CheckBox item in spUnits.Items)
+            //                                                         {
+            //                                                             if (item.IsChecked == true)
+            //                                                             {
+            //                                                                 units.Add(new Unit((Druh)item.Content,
+            //                                                                     new DateTime(dpStartTime.SelectedDate.Value.Year, dpStartTime.SelectedDate.Value.Month, dpStartTime.SelectedDate.Value.Day, Int32.Parse(tbStartHour.Text), Int32.Parse(tbStartMinute.Text), 0),
+            //                                                                     new DateTime(dpEndTime.SelectedDate.Value.Year, dpEndTime.SelectedDate.Value.Month, dpEndTime.SelectedDate.Value.Day, Int32.Parse(tbEndHour.Text), Int32.Parse(tbEndMinute.Text), 0)));
+            //                                                                 zastep.Add((Druh)item.Content);
+            //                                                             }
+            //                                                         }
+            //                                                         gMainInfo.HorizontalAlignment = HorizontalAlignment.Left;
+            //                                                         gAddedUnits.HorizontalAlignment = HorizontalAlignment.Right;
+            //                                                         dgRescuers.ItemsSource = null;
+            //                                                         dgRescuers.Items.Clear();
+            //                                                         dgRescuers.ItemsSource = units;
+            //                                                         gAddUnits.Visibility = Visibility.Hidden;
+            //                                                         gAddedUnits.Visibility = Visibility.Visible;
+            //                                                         gMainInfo.Visibility = Visibility.Visible;
+            //                                                     }
+            //else
+            // {
+            //    MessageBox.Show("Błędnie wypełnione daty lub godziny!", "Erroł", MessageBoxButton.OK, MessageBoxImage.Information);
+            // }
+
+            try
             {
-                if (item.IsChecked == true)
+                Unit test = new Unit(new Druh(),
+                            new DateTime(dpStartTime.SelectedDate.Value.Year, dpStartTime.SelectedDate.Value.Month, dpStartTime.SelectedDate.Value.Day, Int32.Parse(tbStartHour.Text), Int32.Parse(tbStartMinute.Text), 0),
+                            new DateTime(dpEndTime.SelectedDate.Value.Year, dpEndTime.SelectedDate.Value.Month, dpEndTime.SelectedDate.Value.Day, Int32.Parse(tbEndHour.Text), Int32.Parse(tbEndMinute.Text), 0));
+                if(test.EndTime > test.StartTime)
                 {
-                    units.Add(new Unit((Druh)item.Content,
-                        new DateTime(dpStartTime.SelectedDate.Value.Year, dpStartTime.SelectedDate.Value.Month, dpStartTime.SelectedDate.Value.Day, Int32.Parse(tbStartHour.Text), Int32.Parse(tbStartMinute.Text), 0),
-                        new DateTime(dpEndTime.SelectedDate.Value.Year, dpEndTime.SelectedDate.Value.Month, dpEndTime.SelectedDate.Value.Day, Int32.Parse(tbEndHour.Text), Int32.Parse(tbEndMinute.Text), 0)));
-                    zastep.Add((Druh)item.Content);
+                    foreach (CheckBox item in spUnits.Items)
+                    {
+                        if (item.IsChecked == true)
+                        {
+                            units.Add(new Unit((Druh)item.Content,
+                                new DateTime(dpStartTime.SelectedDate.Value.Year, dpStartTime.SelectedDate.Value.Month, dpStartTime.SelectedDate.Value.Day, Int32.Parse(tbStartHour.Text), Int32.Parse(tbStartMinute.Text), 0),
+                                new DateTime(dpEndTime.SelectedDate.Value.Year, dpEndTime.SelectedDate.Value.Month, dpEndTime.SelectedDate.Value.Day, Int32.Parse(tbEndHour.Text), Int32.Parse(tbEndMinute.Text), 0)));
+                            zastep.Add((Druh)item.Content);
+                        }
+                    }
+                    gMainInfo.HorizontalAlignment = HorizontalAlignment.Left;
+                    gAddedUnits.HorizontalAlignment = HorizontalAlignment.Right;
+                    dgRescuers.ItemsSource = null;
+                    dgRescuers.Items.Clear();
+                    dgRescuers.ItemsSource = units;
+                    gAddUnits.Visibility = Visibility.Hidden;
+                    gAddedUnits.Visibility = Visibility.Visible;
+                    gMainInfo.Visibility = Visibility.Visible;
                 }
+                else
+                    MessageBox.Show("Wrócili zanim wyjechali?", "Coś poszło nie tak", MessageBoxButton.OK, MessageBoxImage.Question);
             }
-            gMainInfo.HorizontalAlignment = HorizontalAlignment.Left;
-            gAddedUnits.HorizontalAlignment = HorizontalAlignment.Right;
-            dgRescuers.ItemsSource = null;
-            dgRescuers.Items.Clear();
-            dgRescuers.ItemsSource = units;
-            gAddUnits.Visibility = Visibility.Hidden;
-            gAddedUnits.Visibility = Visibility.Visible;
-            gMainInfo.Visibility = Visibility.Visible;
-            
-            
+            catch (Exception)
+            {
+                MessageBox.Show("Błędnie wypełnione daty lub godziny!", "Erroł", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
     
@@ -402,18 +455,20 @@ namespace OSPMenager
 
         private void btnEquivalentMenu1_Click(object sender, RoutedEventArgs e)
         {
-            gAddedUnits.Visibility = Visibility.Hidden;
+            gAddedUnits.Visibility = Visibility.Visible;
             gAddUnits.Visibility = Visibility.Hidden;
             gRemoveUnits.Visibility = Visibility.Hidden;
-            gMainInfo.HorizontalAlignment = HorizontalAlignment.Center;
+            gMainInfo.HorizontalAlignment = HorizontalAlignment.Left;
+            gAddedUnits.HorizontalAlignment = HorizontalAlignment.Right;
             gMainInfo.Visibility = Visibility.Visible;
         }
 
         private void btnEquivalentMenu5_Click(object sender, RoutedEventArgs e)
         {
             gAddedUnits.Visibility = Visibility.Hidden;
-            gAddMember.Visibility = Visibility.Hidden;
+            gAddUnits.Visibility = Visibility.Hidden;
             gMainInfo.Visibility = Visibility.Hidden;
+            spUnitstoRemove.Items.Clear();
             foreach (var unit in units)
             {
                 CheckBox chk = new CheckBox();
@@ -436,6 +491,87 @@ namespace OSPMenager
             {
                 if (item.TabIndex == spUnitstoRemove.SelectedIndex)
                     item.IsChecked = true;
+            }
+        }
+
+        private void btRemoveUnits_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (CheckBox item in spUnitstoRemove.Items)
+            {
+                if(item.IsChecked == true)
+                {
+                    Unit i = (Unit)item.Content;
+                    units.Remove(i);   
+                    zastep.Remove(i.Rescuer);
+                }
+            }
+            gRemoveUnits.Visibility = Visibility.Hidden;
+            gMainInfo.Visibility = Visibility.Visible;
+            gAddedUnits.Visibility = Visibility.Visible;
+        }
+
+        private void btnEquivalentMenu4_Click(object sender, RoutedEventArgs e)
+        {
+            gRemoveUnits.Visibility = Visibility.Hidden;
+            gMainInfo.Visibility = Visibility.Visible;
+            gAddedUnits.Visibility = Visibility.Visible;
+            gAddUnits.Visibility = Visibility.Hidden;
+            zastep = new List<Druh>();
+            units = new List<Unit>();
+            dpEquivalentOccurrence.SelectedDate = DateTime.Today;
+            dpStartTime.SelectedDate = DateTime.Today;
+            dpEndTime.SelectedDate = DateTime.Today;
+            tbEndHour.Text = "";
+            tbStartHour.Text = "";
+            tbStartMinute.Text = "";
+            tbEndMinute.Text = "";
+            tbRecordNumber.Text = "";
+            tbOccurenceName.Text = "";
+            dgRescuers.ItemsSource = null;
+            // dgRescuers.Items.Clear();
+            wniosek = null;
+        }
+
+        Wniosek1 wniosek = null;
+        private void btnEquivalentMenu3_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //foreach (Druh item in zastep)
+                //{
+                //    item.IleAkcji++;
+                //}
+                int counter = 1;
+                foreach (Unit item in units)
+                {
+                    item.ID = counter;
+                    counter++;
+                }
+                EquivalentApplication application = new EquivalentApplication((DateTime)dpEquivalentOccurrence.SelectedDate, units, tbRecordNumber.Text, tbOccurenceName.Text);
+                wniosek = new Wniosek1(application);
+                wniosek.Show();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nie wypełniono wszystkich wymaganych pól.", "Erroł", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+        }
+
+        private void btnEquivalentMenu6_Click(object sender, RoutedEventArgs e)
+        {
+            if(wniosek != null)
+            {
+                PrintDialog printDialog = new PrintDialog();
+                if (printDialog.ShowDialog() == true)
+                {
+                    printDialog.PrintVisual(wniosek, "My First Print Job");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Najpierw wygeneruj wniosek.", "Erroł", MessageBoxButton.OK, MessageBoxImage.Information);
+
             }
         }
     }

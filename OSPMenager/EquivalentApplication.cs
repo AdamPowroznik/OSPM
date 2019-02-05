@@ -13,7 +13,7 @@ namespace OSPMenager
         public String DateAndPlace { get { return "Nałęczów, " + OccurrenceDateFromDay.ToShortDateString(); } set { } }
         public DateTime OccurrenceDateFromDay { get; set; }
         public List<Unit> Units { get; set; }
-        public int RecordNumber { get; set; }
+        public String RecordNumber { get; set; }
         public String Name { get; set; }
         public TimeSpan TotalTime
         {
@@ -26,8 +26,18 @@ namespace OSPMenager
                 }
                 return totalTime;
             } set { } }
+
         public String OccurenceDate { get { return OccurrenceDateFromDay.ToShortDateString(); } set { } }
 
+        public EquivalentApplication(DateTime occurenceDateFromDay, List<Unit> units, String recordNumber, String name)
+        {
+            OccurrenceDateFromDay = occurenceDateFromDay;
+            Units = units;
+            RecordNumber = recordNumber;
+            Name = name;
+        }
 
+        public EquivalentApplication() { }
+        
     }
 }

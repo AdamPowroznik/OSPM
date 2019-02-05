@@ -22,6 +22,7 @@ namespace OSPMenager
         private DateTime dataUrodzin;
         private StatusDruha status;
         private DateTime dataTegoroczna;
+        private int ileAkcji = 0;
 
 
         public string Imie {
@@ -47,6 +48,11 @@ namespace OSPMenager
             set { status = value; }
         }
 
+        public int IleAkcji
+        {
+            get { return ileAkcji; }
+            set { ileAkcji = value; }
+        }
 
 
         public override string ToString()
