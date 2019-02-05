@@ -10,7 +10,8 @@ namespace OSPMenager
     public class EquivalentApplication
     {
         TimeSpan totalTime;
-        public String DateAndPlace { get { return "Nałęczów, " + OccurrenceDateFromDay.ToShortDateString(); } set { } }
+        public String DateAndPlace { get { return "Nałęczów, " + ApplicationDate.ToShortDateString(); } set { } }
+        public DateTime ApplicationDate { get; set; }
         public DateTime OccurrenceDateFromDay { get; set; }
         public List<Unit> Units { get; set; }
         public String RecordNumber { get; set; }
@@ -29,12 +30,13 @@ namespace OSPMenager
 
         public String OccurenceDate { get { return OccurrenceDateFromDay.ToShortDateString(); } set { } }
 
-        public EquivalentApplication(DateTime occurenceDateFromDay, List<Unit> units, String recordNumber, String name)
+        public EquivalentApplication(DateTime occurenceDateFromDay, List<Unit> units, String recordNumber, String name, DateTime applicationDate)
         {
             OccurrenceDateFromDay = occurenceDateFromDay;
             Units = units;
             RecordNumber = recordNumber;
             Name = name;
+            ApplicationDate = applicationDate;
         }
 
         public EquivalentApplication() { }

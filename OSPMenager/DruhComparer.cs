@@ -10,6 +10,7 @@ namespace OSPMenager
     {
         TypeThenDate,
         DateThenType,
+        ActionsThenType,
     }
     class DruhComparer : IComparer<Druh>
     {
@@ -30,7 +31,21 @@ namespace OSPMenager
                 else
                     return 0;
             }
-            else
+            else if(SortBy == SortCriteria.ActionsThenType)
+            {
+                if (x.IleAkcji < y.IleAkcji)
+                    return 1;
+                else if (x.IleAkcji > y.IleAkcji)
+                    return -1;
+                else
+                    if (x.Status < y.Status)
+                    return 1;
+                else if (x.Status > y.Status)
+                    return -1;
+                else
+                    return 0;
+            }
+            else 
             {
                 if (x.Status > y.Status)
                     return 1;

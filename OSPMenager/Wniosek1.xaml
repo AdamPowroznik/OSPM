@@ -23,9 +23,9 @@
     </Window.Resources>
     
     <Grid x:Name="gApplication">
-        <StackPanel Margin="30" x:Name="spContext">
-            <TextBlock x:Name="tbDateAndPlace" HorizontalAlignment="Right" Text="{Binding DateAndPlace}" FontWeight="Bold"/>
-            <TextBlock Text="WNIOSEK" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20"/>
+        <StackPanel Margin="30, 30, 30, 30" x:Name="spContext">
+            <TextBlock x:Name="tbDateAndPlace" HorizontalAlignment="Right" Text="{Binding DateAndPlace}" FontWeight="Bold" FontSize="14"/>
+            <TextBlock Text="WNIOSEK" Margin="0, 30, 0, 0" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20"/>
             <TextBlock Text="o wypłatę ekwiwalentu za udział w działaniu ratowniczym lub szkoleniu pożarniczym organizowanym przez Państwową Straż Pożarną lub Gminę" TextWrapping="Wrap" FontWeight="Bold" FontSize="14"/>
             <TextBlock Margin="20, 0, 20 , 0" Text="1.	Ochotnicza Straż Pożarna w Nałęczowie na podstawie art. 28 ust. 1-3,5 ustawy z dnia 24 sierpnia 1991r. o ochronie przeciwpożarowej (tekst jednolity Dz. U. z 2002r. Nr 147 poz. 1229 ze zm.) przedstawia listę członków. Którzy wzięli udział w:" TextWrapping="Wrap" FontSize="14"/>
             <TextBlock TextWrapping="Wrap" Margin="50, 0, 0 , 0" FontSize="14">
@@ -33,12 +33,12 @@
                 <Run FontWeight="Bold" Text="{Binding OccurenceDate}"/>
                 <Run Text=" o numerze ewidencyjnym zdarzenia "/>
                 <Run FontWeight="Bold" Text="{Binding RecordNumber}"/>
-                <Run Text="Nazwa zdarzenia: "/>
+                <LineBreak/> <Run Text="Nazwa zdarzenia: "/>
                 <Run FontWeight="Bold" Text="{Binding Name}"/>
             </TextBlock>
             <TextBlock TextWrapping="Wrap" Margin="50, 0, 0 , 0" Text="b)	Szkoleniu pożarniczym organizowanym przez PSP/Gminę według załączonego zaświadczenia." FontSize="14"/>
             <TextBlock Margin="20, 20, 0 , 0" TextWrapping="Wrap" Text="2.	N/w członkowie OSP biorący udział w działaniu ratowniczym/szkoleniu zwracają się z prośbą o wypłatę ekwiwalentu zgodnie z art. 28 ust. 1-5 ustawy z dnia 24 sierpnia 1992r. o ochronie przeciwpożarowej" FontSize="14"/>
-            <DataGrid x:Name="dgRescuers" SelectedIndex="-1" IsReadOnly="true" AutoGeneratingColumn="OnAutoGeneratingColumn" AutoGenerateColumns="False" IsHitTestVisible="False" Focusable="False" FontSize="14">
+            <DataGrid x:Name="dgRescuers" MinRowHeight="50" SelectedIndex="-1" IsReadOnly="true" AutoGeneratingColumn="OnAutoGeneratingColumn" AutoGenerateColumns="False" IsHitTestVisible="False" Focusable="False" FontSize="14">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="ContentTemplate">
@@ -53,7 +53,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="1*" Binding="{Binding ID}" Header="L.p."/>
 
-                    <DataGridTextColumn Width="3*" Binding="{Binding Rescuer}" Header="Imie i Nazwisko"/>
+                    <DataGridTextColumn  Width="3*" Binding="{Binding Rescuer}" Header="Imie i Nazwisko"/>
                     <DataGridTextColumn Width="1*" Binding="{Binding StartTime, StringFormat='HH:mm'}" Header="Od"/>
                     <DataGridTextColumn Width="1*" Binding="{Binding EndTime, StringFormat='HH:mm'}" Header="Do"/>
                     <DataGridTextColumn Width="2*" Binding="{Binding TotalTime, StringFormat= h\\g\\o\\d\\z\\.\\ mm\\m\\i\\n}" Header="Czas udziału w działaniu ratowniczym lub szkoleniu"/>

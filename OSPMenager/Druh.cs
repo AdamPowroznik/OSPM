@@ -22,7 +22,7 @@ namespace OSPMenager
         private DateTime dataUrodzin;
         private StatusDruha status;
         private DateTime dataTegoroczna;
-        private int ileAkcji = 0;
+        private int ileAkcji;
 
 
         public string Imie {
@@ -61,7 +61,7 @@ namespace OSPMenager
         }
 
 
-        public String ToString3()
+        public string ToString3()
         {
             int wiek;
             if (dataUrodzin.DayOfYear < DateTime.Today.DayOfYear)

@@ -16,3 +16,10 @@ C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\obj\Deb
 C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\obj\Debug\Wniosek1.baml
 C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\obj\Debug\OSPMenager.csprojAssemblyReference.cache
+C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\bin\Debug\OSPMenager.exe.manifest
+C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\bin\Debug\OSPMenager.application
+C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\obj\Debug\OSPMenager.TrustInfo.xml
+C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\obj\Debug\OSPMenager.exe.manifest
+C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\obj\Debug\OSPMenager.application
+C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\bin\Debug\bin\Debug\supernazwa.xml
+C:\Users\Bla\documents\visual studio 2017\Projects\OSPMenager\OSPMenager\obj\Debug\OSPMenager_Content.g.cs

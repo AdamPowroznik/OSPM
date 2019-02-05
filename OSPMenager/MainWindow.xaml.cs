@@ -30,6 +30,7 @@ namespace OSPMenager
         public List<Druh> druhowie = new List<Druh>();
         DispatcherTimer timer = new DispatcherTimer();
         DruhComparer comparer = new DruhComparer();
+        DruhComparer comparer2 = new DruhComparer();
         bool edytowanie;
         Druh edytowany = new Druh();
         Style s;
@@ -45,23 +46,27 @@ namespace OSPMenager
             InitializeComponent();
             PomalujDni(druhowie);
             Clock();
-
+            dpApplication.SelectedDate = DateTime.Today;
 
             //dg.ItemsSource = druhowie;
 
         }
 
-
+        List<Druh> commingSoonList = new List<Druh>();
         private void UpdateControls()
         {
             lvCommingSoon.Items.Clear();
             comparer.SortBy = SortCriteria.DateThenType;
             druhowie.Sort(comparer);
             List<Druh> koniecKolejki = new List<Druh>();
+            commingSoonList = new List<Druh>();
             foreach (var item in druhowie)
             {
                 if (item.DataUrodzin.DayOfYear >= DateTime.Today.DayOfYear)
+                {
                     lvCommingSoon.Items.Add(item.ToString3());
+                    commingSoonList.Add(item);
+                }
                 else
                     koniecKolejki.Add(item);
             }
@@ -69,6 +74,7 @@ namespace OSPMenager
             foreach (var item in koniecKolejki)
             {
                 lvCommingSoon.Items.Add(item.ToString3());
+                commingSoonList.Add(item);
             }
             foreach (var item in druhowie)
             {
@@ -213,26 +219,34 @@ namespace OSPMenager
         private void btRemove_Click(object sender, RoutedEventArgs e)
         {
             druhowie.Remove(edytowany);
+            commingSoonList.RemoveAt(index);
             UpdateControls();
         }
 
         private void lvCommingSoon_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            edytowanie = true;
-            edytowany = (Druh)lvCommingSoon.SelectedItem;
-            tbImieNowego.Text = edytowany.Imie;
-            tbNazwiskoNowego.Text = edytowany.Nazwisko;
-            dpDataNowego.SelectedDate = edytowany.DataUrodzin;
-            cbStatusNowego.SelectedIndex = (int)edytowany.Status;
+            //edytowanie = true;
+            //edytowany = (Druh)lvCommingSoon.SelectedItem;
+            //tbImieNowego.Text = edytowany.Imie;
+            //tbNazwiskoNowego.Text = edytowany.Nazwisko;
+            //dpDataNowego.SelectedDate = edytowany.DataUrodzin;
+            //cbStatusNowego.SelectedIndex = (int)edytowany.Status;
 
-            btCancelNewEvent.Visibility = Visibility.Hidden;
-            gAddMember.Visibility = Visibility.Visible;
+            //btCancelNewEvent.Visibility = Visibility.Hidden;
+            //gAddMember.Visibility = Visibility.Visible;
         }
-
+        int index = 0;
         private void lvCommingSoon_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lvCommingSoon.SelectedIndex >= 0)
-                edytowany = (Druh)lvCommingSoon.SelectedItem;
+            if(lvCommingSoon.SelectedIndex >= 0)
+            {
+                index = lvCommingSoon.SelectedIndex;
+                edytowany = commingSoonList[index];
+            }
+            
+         //   if (lvCommingSoon.SelectedIndex >= 0)
+          //      edytowany = commingSoonList.(lvCommingSoon.SelectedIndex);
+                    //(Druh)lvCommingSoon.SelectedItem;
         }
 
         private void PomalujDni(List<Druh> wydarzenia)
@@ -296,6 +310,7 @@ namespace OSPMenager
                 sb.Begin();
                 ButtonMenu2.Visibility = Visibility.Visible;
                 ButtonMenu3.Visibility = Visibility.Visible;
+                ButtonMenu4.Visibility = Visibility.Visible;
                 tbWelcomeTitle.Visibility = Visibility.Visible;
             }
             else
@@ -304,6 +319,7 @@ namespace OSPMenager
                 tbWelcomeTitle.Visibility = Visibility.Hidden;
                 ButtonMenu2.Visibility = Visibility.Hidden;
                 ButtonMenu3.Visibility = Visibility.Hidden;
+                ButtonMenu4.Visibility = Visibility.Hidden;
                 Storyboard sb = this.FindResource("CloseMenu") as Storyboard;
                 sb.Begin();
                 
@@ -316,6 +332,8 @@ namespace OSPMenager
             ButtonMenu_Click(this, null);
             OSPUrodziny.Visibility = Visibility.Visible;
             gStartGrid.Visibility = Visibility.Hidden;
+            OSPEquivalent.Visibility = Visibility.Hidden;
+            gINFO.Visibility = Visibility.Hidden;
         }
 
         private void btQuit_Click(object sender, RoutedEventArgs e)
@@ -328,7 +346,9 @@ namespace OSPMenager
         {
             ButtonMenu_Click(this, null);
             gStartGrid.Visibility = Visibility.Hidden;
-            
+            OSPUrodziny.Visibility = Visibility.Hidden;
+            OSPEquivalent.Visibility = Visibility.Visible;
+            gINFO.Visibility = Visibility.Hidden;
         }
 
         private void btnEquivalentMenu2_Click(object sender, RoutedEventArgs e)
@@ -343,6 +363,8 @@ namespace OSPMenager
             }
                 
             spUnits.Items.Clear();
+            comparer2.SortBy = SortCriteria.ActionsThenType;
+            druhowie.Sort(comparer2);
             foreach (var druh in druhowie)
             {
                 if (zastep.Contains(druh) == false)
@@ -414,24 +436,36 @@ namespace OSPMenager
                             new DateTime(dpEndTime.SelectedDate.Value.Year, dpEndTime.SelectedDate.Value.Month, dpEndTime.SelectedDate.Value.Day, Int32.Parse(tbEndHour.Text), Int32.Parse(tbEndMinute.Text), 0));
                 if(test.EndTime > test.StartTime)
                 {
+                    int counter = 0;
                     foreach (CheckBox item in spUnits.Items)
                     {
                         if (item.IsChecked == true)
-                        {
-                            units.Add(new Unit((Druh)item.Content,
-                                new DateTime(dpStartTime.SelectedDate.Value.Year, dpStartTime.SelectedDate.Value.Month, dpStartTime.SelectedDate.Value.Day, Int32.Parse(tbStartHour.Text), Int32.Parse(tbStartMinute.Text), 0),
-                                new DateTime(dpEndTime.SelectedDate.Value.Year, dpEndTime.SelectedDate.Value.Month, dpEndTime.SelectedDate.Value.Day, Int32.Parse(tbEndHour.Text), Int32.Parse(tbEndMinute.Text), 0)));
-                            zastep.Add((Druh)item.Content);
-                        }
+                            counter++;
                     }
-                    gMainInfo.HorizontalAlignment = HorizontalAlignment.Left;
-                    gAddedUnits.HorizontalAlignment = HorizontalAlignment.Right;
-                    dgRescuers.ItemsSource = null;
-                    dgRescuers.Items.Clear();
-                    dgRescuers.ItemsSource = units;
-                    gAddUnits.Visibility = Visibility.Hidden;
-                    gAddedUnits.Visibility = Visibility.Visible;
-                    gMainInfo.Visibility = Visibility.Visible;
+                    if (counter >= 3)
+                    {
+                        foreach (CheckBox item in spUnits.Items)
+                        {
+                            if (item.IsChecked == true)
+                            {
+                                units.Add(new Unit((Druh)item.Content,
+                                    new DateTime(dpStartTime.SelectedDate.Value.Year, dpStartTime.SelectedDate.Value.Month, dpStartTime.SelectedDate.Value.Day, Int32.Parse(tbStartHour.Text), Int32.Parse(tbStartMinute.Text), 0),
+                                    new DateTime(dpEndTime.SelectedDate.Value.Year, dpEndTime.SelectedDate.Value.Month, dpEndTime.SelectedDate.Value.Day, Int32.Parse(tbEndHour.Text), Int32.Parse(tbEndMinute.Text), 0)));
+                                zastep.Add((Druh)item.Content);
+                            }
+                        }
+                        gMainInfo.HorizontalAlignment = HorizontalAlignment.Left;
+                        gAddedUnits.HorizontalAlignment = HorizontalAlignment.Right;
+                        dgRescuers.ItemsSource = null;
+                        dgRescuers.Items.Clear();
+                        dgRescuers.ItemsSource = units;
+                        gAddUnits.Visibility = Visibility.Hidden;
+                        gAddedUnits.Visibility = Visibility.Visible;
+                        gMainInfo.Visibility = Visibility.Visible;
+                    }
+                    else
+                        MessageBox.Show("Zastęp musi składać się z minimum trzech członków.", "Coś poszło nie tak", MessageBoxButton.OK, MessageBoxImage.Warning);
+
                 }
                 else
                     MessageBox.Show("Wrócili zanim wyjechali?", "Coś poszło nie tak", MessageBoxButton.OK, MessageBoxImage.Question);
@@ -537,17 +571,17 @@ namespace OSPMenager
         {
             try
             {
-                //foreach (Druh item in zastep)
-                //{
-                //    item.IleAkcji++;
-                //}
+                foreach (Druh item in zastep)
+                {
+                    item.IleAkcji++;
+                }
                 int counter = 1;
                 foreach (Unit item in units)
                 {
                     item.ID = counter;
                     counter++;
                 }
-                EquivalentApplication application = new EquivalentApplication((DateTime)dpEquivalentOccurrence.SelectedDate, units, tbRecordNumber.Text, tbOccurenceName.Text);
+                EquivalentApplication application = new EquivalentApplication((DateTime)dpEquivalentOccurrence.SelectedDate, units, tbRecordNumber.Text, tbOccurenceName.Text, (DateTime)dpApplication.SelectedDate);
                 wniosek = new Wniosek1(application);
                 wniosek.Show();
             }
@@ -573,6 +607,29 @@ namespace OSPMenager
                 MessageBox.Show("Najpierw wygeneruj wniosek.", "Erroł", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
+        }
+
+        private void ButtonStartMenu4_Click(object sender, RoutedEventArgs e)
+        {
+            gINFO.Visibility = Visibility.Visible;
+            gStartGrid.Visibility = Visibility.Hidden;
+            OSPUrodziny.Visibility = Visibility.Hidden;
+            OSPEquivalent.Visibility = Visibility.Hidden;
+        }
+
+        private void btInfoQuit_Click(object sender, RoutedEventArgs e)
+        {
+            gINFO.Visibility = Visibility.Hidden;
+            gStartGrid.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonMenu4_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonMenu_Click(this, null);
+            gStartGrid.Visibility = Visibility.Hidden;
+            OSPUrodziny.Visibility = Visibility.Hidden;
+            OSPEquivalent.Visibility = Visibility.Hidden;
+            gINFO.Visibility = Visibility.Visible;
         }
     }
 }

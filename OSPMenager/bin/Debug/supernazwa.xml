@@ -5,26 +5,33 @@
     <Nazwisko>Kamola</Nazwisko>
     <DataUrodzin>1999-01-06T00:00:00</DataUrodzin>
     <Status>Zarząd</Status>
-    <IleAkcji>1</IleAkcji>
+    <IleAkcji>2</IleAkcji>
   </Druh>
   <Druh>
     <Imie>Kacper</Imie>
     <Nazwisko>Rząd</Nazwisko>
     <DataUrodzin>1999-01-08T00:00:00</DataUrodzin>
     <Status>Zarząd</Status>
-    <IleAkcji>1</IleAkcji>
+    <IleAkcji>2</IleAkcji>
   </Druh>
   <Druh>
     <Imie>Kuba</Imie>
     <Nazwisko>Sałęga</Nazwisko>
     <DataUrodzin>1999-01-27T00:00:00</DataUrodzin>
     <Status>Zwykły2</Status>
-    <IleAkcji>0</IleAkcji>
+    <IleAkcji>2</IleAkcji>
   </Druh>
   <Druh>
     <Imie>Katarzyna</Imie>
     <Nazwisko>Pietrykowska</Nazwisko>
     <DataUrodzin>1999-02-03T00:00:00</DataUrodzin>
+    <Status>Zwykły1</Status>
+    <IleAkcji>0</IleAkcji>
+  </Druh>
+  <Druh>
+    <Imie />
+    <Nazwisko />
+    <DataUrodzin>2019-02-05T00:00:00+01:00</DataUrodzin>
     <Status>Zwykły1</Status>
     <IleAkcji>0</IleAkcji>
   </Druh>
@@ -40,21 +47,21 @@
     <Nazwisko>Cichocki</Nazwisko>
     <DataUrodzin>1996-02-24T00:00:00</DataUrodzin>
     <Status>Zwykły2</Status>
-    <IleAkcji>2</IleAkcji>
+    <IleAkcji>1</IleAkcji>
   </Druh>
   <Druh>
     <Imie>Bartek</Imie>
     <Nazwisko>Kamola</Nazwisko>
     <DataUrodzin>1996-03-05T00:00:00</DataUrodzin>
     <Status>Zwykły2</Status>
-    <IleAkcji>1</IleAkcji>
+    <IleAkcji>2</IleAkcji>
   </Druh>
   <Druh>
     <Imie>Piotrek</Imie>
     <Nazwisko>Czubak</Nazwisko>
     <DataUrodzin>1996-05-12T00:00:00</DataUrodzin>
     <Status>Zwykły2</Status>
-    <IleAkcji>1</IleAkcji>
+    <IleAkcji>0</IleAkcji>
   </Druh>
   <Druh>
     <Imie>Mateusz</Imie>
@@ -82,14 +89,14 @@
     <Nazwisko>Pyrka</Nazwisko>
     <DataUrodzin>1994-07-22T00:00:00</DataUrodzin>
     <Status>Zarząd</Status>
-    <IleAkcji>1</IleAkcji>
+    <IleAkcji>0</IleAkcji>
   </Druh>
   <Druh>
     <Imie>Adam</Imie>
     <Nazwisko>Powroźnik</Nazwisko>
     <DataUrodzin>1995-11-24T00:00:00</DataUrodzin>
     <Status>Zwykły2</Status>
-    <IleAkcji>0</IleAkcji>
+    <IleAkcji>2</IleAkcji>
   </Druh>
   <Druh>
     <Imie>Paweł</Imie>

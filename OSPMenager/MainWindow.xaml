@@ -1,4 +1,4 @@
-﻿<Window x:Name="main" x:Class="OSPMenager.MainWindow"
+﻿<Window x:Name="main" x:Class="OSPMenager.MainWindow" Icon="bin/Debug/POL_Nałęczów_COA — ico.png"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -69,7 +69,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid x:Name="GridMenu" Grid.Column="0" HorizontalAlignment="Left" Width="70" Background="#FF116FA4">
-            <StackPanel>
+            <StackPanel >
                 <Grid Height="150" Background="{Binding Fill, ElementName=ellipse}" >
                     <TextBlock Text="OSP Menadżer" Visibility="Hidden" x:Name="tbWelcomeTitle" FontWeight="Bold" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <Button x:Name="ButtonMenu" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="70" Height="70" Click="ButtonMenu_Click">
@@ -98,18 +98,30 @@
                         </Grid>
                     </Button>
                 </Grid>
+                <ScrollViewer  VerticalScrollBarVisibility="Hidden" Height="375" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" >
+                    <StackPanel >
 
-                <Button x:Name="ButtonMenu2" Content="Urodziny" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Width="200" Visibility="Hidden" Height="150" Click="ButtonMenu2_Click" FontWeight="Bold" Foreground="White" >
-                    <Button.Background>
-                        <ImageBrush ImageSource="bin/Debug/poziomy.jpg"/>
-                    </Button.Background>
-                </Button>
 
-                <Button x:Name="ButtonMenu3" Content="Wniosek o ekwiwalent" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Width="200" Visibility="Hidden" Height="150" Click="ButtonMenu3_Click" FontWeight="Bold" Foreground="#FF00742A" >
-                    <Button.Background>
-                        <ImageBrush ImageSource="bin/Debug/wniosek_ekwiwalent.JPG" Stretch="Uniform"/>
-                    </Button.Background>
-                </Button>
+
+                        <Button x:Name="ButtonMenu2" Content="Urodziny" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Width="200" Visibility="Hidden" Height="150" Click="ButtonMenu2_Click" FontWeight="Bold" Foreground="White" >
+                            <Button.Background>
+                                <ImageBrush ImageSource="bin/Debug/poziomy.jpg"/>
+                            </Button.Background>
+                        </Button>
+
+                        <Button x:Name="ButtonMenu3" Content="Wniosek o ekwiwalent" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Width="200" Visibility="Hidden" Height="150" Click="ButtonMenu3_Click" FontWeight="Bold" Foreground="#FF00742A" >
+                            <Button.Background>
+                                <ImageBrush ImageSource="bin/Debug/wniosek_ekwiwalent.JPG" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+
+                        <Button x:Name="ButtonMenu4" Content="Informacje" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Width="200" Visibility="Hidden" Height="150" Click="ButtonMenu4_Click" FontWeight="Bold" Foreground="#FF00742A" >
+                            <Button.Background>
+                                <ImageBrush ImageSource="bin/Debug/infoico.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>
             <Grid Height="75" VerticalAlignment="Bottom" Background="White">
                 <Button x:Name="btQuit" Click="btQuit_Click">
@@ -128,7 +140,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="gStartGrid" Grid.Column="1" Visibility="Hidden">
+        <Grid x:Name="gStartGrid" Grid.Column="1" Visibility="Visible">
             <WrapPanel>
 
                 <Button x:Name="ButtonStartMenu2" Content="Urodziny" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Width="200" Visibility="Visible" Height="150" Click="ButtonMenu2_Click" FontWeight="Bold" Foreground="White" >
@@ -143,7 +155,7 @@
                     </Button.Background>
                 </Button>
 
-                <Button x:Name="ButtonStartMenu4" VerticalAlignment="Bottom" HorizontalAlignment="Right"  BorderBrush="{x:Null}" Width="200" Visibility="Visible" Height="150" FontWeight="Bold" Foreground="White" >
+                <Button x:Name="ButtonStartMenu4" VerticalAlignment="Bottom" HorizontalAlignment="Right"  BorderBrush="{x:Null}" Width="200" Visibility="Visible" Height="150" FontWeight="Bold" Foreground="White" Click="ButtonStartMenu4_Click" >
                     <Button.Background>
                         <ImageBrush ImageSource="bin/Debug/infoico.png"/>
                     </Button.Background>
@@ -223,7 +235,10 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Column="1" x:Name="gAddMember" Visibility="Hidden" Opacity="1" Background="{x:Null}" >
+            <Grid Grid.Column="1" x:Name="gAddMember" Visibility="Hidden" Opacity="1" >
+                <Grid.Background>
+                    <ImageBrush ImageSource="bin/Debug/pionowy.jpg"/>
+                </Grid.Background>
                 <StackPanel Margin="10, 10, 10, 10">
                     <TextBlock  Text="Dodawanie nowego druha:" FontFamily="Comic Sans MS" Margin="10, 0, 10, 10" TextAlignment="Center" FontWeight="ExtraBlack" Foreground="Red"/>
                     <StackPanel x:Name="spPicker" Opacity="0.8">
@@ -256,7 +271,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="OSPEquivalent" Grid.Column="1" Visibility="Visible" Background="#FF6F18AC" >
+        <Grid x:Name="OSPEquivalent" Grid.Column="1" Visibility="Hidden" Background="#FF6F18AC" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="200"/>
@@ -287,6 +302,9 @@
 
             <Grid Grid.Column="0" Visibility="Hidden" VerticalAlignment="Center" x:Name="gMainInfo" HorizontalAlignment="Center">
                 <StackPanel>
+                    <TextBlock Text="Data wniosku: " Margin="20,20,20,0" Foreground="White" HorizontalAlignment="Left" FontSize="24" />
+                    <DatePicker x:Name="dpApplication" Margin="20,0,20,20" Background="{x:Null}" Width="300" FontSize="24" Text="Wybierz datę" BorderBrush="{x:Null}" Foreground="#FF6F18AC" HorizontalAlignment="Left"/>
+
                     <TextBlock Text="Data zdarzenia: " Margin="20,20,20,0" Foreground="White" HorizontalAlignment="Left" FontSize="24" />
                     <DatePicker x:Name="dpEquivalentOccurrence" Margin="20,0,20,20" Background="{x:Null}" Width="300" FontSize="24" Text="Wybierz datę" BorderBrush="{x:Null}" Foreground="#FF6F18AC" HorizontalAlignment="Left"/>
                     <TextBlock Text="Numer ewidencyjny: " Margin="20,20,20,0" Foreground="White" HorizontalAlignment="Left" FontSize="24" />
@@ -377,6 +395,30 @@
             </Grid>
 
         </Grid>
+
+        <Grid x:Name="gINFO" Visibility="Hidden" Grid.Column="1">
+            <StackPanel>
+
+
+                <TextBlock FontSize="16" Margin="20" TextWrapping="Wrap">
+                <LineBreak/>OSPMenadżer powstał dla OSP Nałęczów w celu poprawy żywota jej druhów! Oraz nie jest aplikacją komercyjną.
+                <LineBreak/><LineBreak/>Tytuł apk: OSPUrodziny - Ta aplikacja wyświetla listę wszystkich członków jednostki Ochotniczej Straży Pożarnej 
+                <LineBreak/>wraz ze szczegółową datą urodzin. Lista jest posegregowane według najbliższych urodzin. Umożliwia to szybkie i łatwe sprawdzenie
+                <LineBreak/>nadchodzących urodizn w celu przygotowania niespodzianki dla solenizanta. 
+                <LineBreak/><LineBreak/>Tytuł apk: Wniosek o ekwiwalent - Ta aplikacja została stworzona w celu usprawnienia administracji i zarządzania
+                <LineBreak/> Ochotniczej Straży Pożarnej, umożliwia szybkie uzupełnianie, generowanie i drukowanie wniosków urzędowych o należny ekwiwalent 
+                <LineBreak/>dla uczestników akcji ratowniczo gaśniczych oraz szkoleń. Ręczne pisanie takich wniosków jest uciążliwe i długotrwałe. 
+                <LineBreak/><LineBreak/>Ważne! Wszystkie dane aplikacji MenadżerOSP zapisane są w pliku "supernazwa.xml"
+                <LineBreak/> zawartym w folderze aplikacji, utrata tego pliku spowoduje utratę całej "bazy danych" aplikacji. 
+                <LineBreak/>Sugeruję systematycznie tworzyć kopię zapasową tego pliku.
+                <LineBreak/><LineBreak/>Wersja OSPMenadżer v.1.0.1.
+                <LineBreak/><LineBreak/>Autor: Adaś - wszystkie uwagi, problemy i pomysły kolejnych modułów proszę konsultować bezpośrednio ze mną lub poprzez  <LineBreak/>e-mail : adampowroznik95@gmail.com
+                <LineBreak/>
+                </TextBlock>
+                <Button x:Name="btInfoQuit" Content="Zamknij" Width="100" Click="btInfoQuit_Click"/>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 
 </Window>

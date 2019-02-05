@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/infoico.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/supernazwa.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("supernazwa.xml")]
 
 
