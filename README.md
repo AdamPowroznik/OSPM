@@ -29,5 +29,5 @@ Some colors (styles) in calendar problems,
 Screenshots:
 -----------
 <div align="center">
-    <img src="/screenshots/ss1.png" width="400px"</img> 
+    <img src="/screenshots/ss1.PNG" width="400px"</img> 
 </div>
