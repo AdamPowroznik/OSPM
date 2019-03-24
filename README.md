@@ -13,7 +13,7 @@ Why this app even exists?
 ---------------
 I'm creating this kind of apps to upgrade my programming skills
 
-and to make lifes of my friends from fire brigade easier in such tasks like fullfilling equvlent documents. 
+and to make lifes of my friends from fire brigade easier in such tasks like fullfilling equivalent documents. 
 
 Future features to add:
 -------------------
