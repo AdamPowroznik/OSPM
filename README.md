@@ -35,18 +35,18 @@ Screenshot 1 shows the start page of the application
 
 Screenshot 2 shows first module of the application and also unwrapped (expanded) burger menu with slider which lets the user to navigate between every modules of the application.
 <div align="center">	
-    <img src="/screenshots/ss2.PNG" width="400px"</img> 
+    <img src="/screenshots/ss7.PNG" width="400px"</img> 
 </div>
 
 Screenshot 3, 4 & 5 shows briefly the possibilities of the second module.
 <div align="center">	
-    <img src="/screenshots/ss3.PNG" width="400px"</img> 
+    <img src="/screenshots/ss8.PNG" width="400px"</img> 
 </div>
 <div align="center">	
-    <img src="/screenshots/ss4.PNG" width="400px"</img> 
+    <img src="/screenshots/ss9.PNG" width="400px"</img> 
 </div>
 <div align="center">	
-    <img src="/screenshots/ss5.PNG" width="400px"</img> 
+    <img src="/screenshots/ss10.PNG" width="400px"</img> 
 </div>
 
 Screenshot 6 shows the information module.
