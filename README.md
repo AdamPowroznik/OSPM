@@ -28,4 +28,4 @@ Some colors (styles) in calendar problems,
 
 Screenshots:
 -----------
-![Alt text](/screenshots/ss1.jpg?raw=true "Optional Title")
+![Alt text](/screenshots/ss1.png?raw=true "Optional Title")
