@@ -28,4 +28,6 @@ Some colors (styles) in calendar problems,
 
 Screenshots:
 -----------
-![Alt text](/screenshots/ss1.png?raw=true "Optional Title")
+<div align="center">
+    <img src="/screenshots/ss1.png" width="400px"</img> 
+</div>
