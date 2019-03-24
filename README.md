@@ -28,6 +28,28 @@ Some colors (styles) in calendar problems,
 
 Screenshots:
 -----------
-<div align="center">
+Screenshot 1 shows the start page of application and also unwrapped (expanded) burger menu with slider which lets the user to navigate between every modules of the application.
+<div align="center">	
     <img src="/screenshots/ss1.PNG" width="400px"</img> 
+</div>
+
+Screenshot 2 shows first module of the application
+<div align="center">	
+    <img src="/screenshots/ss2.PNG" width="400px"</img> 
+</div>
+
+Screenshot 3, 4 & 5 shows briefly the possibilities of the second module.
+<div align="center">	
+    <img src="/screenshots/ss3.PNG" width="400px"</img> 
+</div>
+<div align="center">	
+    <img src="/screenshots/ss4.PNG" width="400px"</img> 
+</div>
+<div align="center">	
+    <img src="/screenshots/ss5.PNG" width="400px"</img> 
+</div>
+
+Screenshot 6 shows the information module.
+<div align="center">	
+    <img src="/screenshots/ss6.PNG" width="400px"</img> 
 </div>
