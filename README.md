@@ -28,12 +28,12 @@ Some colors (styles) in calendar problems,
 
 Screenshots:
 -----------
-Screenshot 1 shows the start page of application and also unwrapped (expanded) burger menu with slider which lets the user to navigate between every modules of the application.
+Screenshot 1 shows the start page of the application 
 <div align="center">	
     <img src="/screenshots/ss1.PNG" width="400px"</img> 
 </div>
 
-Screenshot 2 shows first module of the application
+Screenshot 2 shows first module of the application and also unwrapped (expanded) burger menu with slider which lets the user to navigate between every modules of the application.
 <div align="center">	
     <img src="/screenshots/ss2.PNG" width="400px"</img> 
 </div>
